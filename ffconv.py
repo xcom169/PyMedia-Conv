@@ -12,6 +12,11 @@ def process():
     filelist = sorted(filelist)
     filelist2 = sorted(filelist2)
 
+    print(filelist2)
+    print(filelist)
+
+    if(filelist == [] || filelist2 == []):
+        print("Nincs megfelelő fájl")
 
 
     # encode each file
