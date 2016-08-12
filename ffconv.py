@@ -64,7 +64,7 @@ def encode(file):
     }
 
     inputFile = file
-    outputFile = inputFile[5:20].upper() + index.__str__() + 'conv' + '.mkv'
+    outputFile = inputFile[0:20].upper() + index.__str__() + 'conv' + '.mkv'
 
     try:
 
