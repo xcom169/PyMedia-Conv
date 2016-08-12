@@ -54,9 +54,7 @@ def encode(file):
     optionsNoConv = {
         'format': 'mkv',
         'audio': {
-            'codec': 'ac3',
-            'samplerate': 11025,
-            'channels': 2
+            'codec': 'ac3'
         },
         'video': {
             'codec': 'copy'
