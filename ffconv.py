@@ -8,7 +8,6 @@ def process():
 
     # get a list of files that have the extension mkv
     filelist = filter(lambda f: f.split('.')[-1] == 'mp4', os.listdir(cwd))
-    filelist.
     filelist2 = filter(lambda f: f.split('.')[-1] == 'mkv', os.listdir(cwd))
     filelist = sorted(filelist)
     filelist2 = sorted(filelist2)
