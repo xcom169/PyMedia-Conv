@@ -95,6 +95,7 @@ def encode(file):
     finally:
         # always cleanup even if there are errors
         #subprocess.call(['rm', '-fr', 'attachments'])
+        global index
         index += 1
         print('Done')
 
