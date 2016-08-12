@@ -15,7 +15,7 @@ def process():
     print(filelist2)
     print(filelist)
 
-    if(filelist == [] || filelist2 == []):
+    if(filelist == [] or filelist2 == []):
         print("Nincs megfelelő fájl")
 
 
