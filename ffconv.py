@@ -14,16 +14,18 @@ def process():
 
     if(filelist == [] or filelist2 == []):
         print("Nincs megfelelő fájl")
+    else:
+        # encode each file
+        for file in filelist:
+            encode(file)
+
+        for file in filelist2:
+            encode(file)
+
+        os.chdir('..')
 
 
-    # encode each file
-    for file in filelist:
-        encode(file)
 
-    for file in filelist2:
-        encode(file)
-
-    os.chdir('..')
 
 def encode(file):
     global index
