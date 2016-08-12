@@ -8,6 +8,7 @@ def process():
 
     # get a list of files that have the extension mkv
     filelist = filter(lambda f: f.split('.')[-1] == 'mp4', os.listdir(cwd))
+    filelist.
     filelist2 = filter(lambda f: f.split('.')[-1] == 'mkv', os.listdir(cwd))
     filelist = sorted(filelist)
     filelist2 = sorted(filelist2)
@@ -47,6 +48,21 @@ def encode(file):
     'map': 0
 }
 
+    optionsNoConv = {
+        'format': 'mkv',
+        'audio': {
+            'codec': 'ac3',
+            'samplerate': 11025,
+            'channels': 2
+        },
+        'video': {
+            'codec': 'copy'
+        },
+        'subtitle': {
+            'codec': 'copy'
+        },
+        'map': 0
+    }
 
     inputFile = file
     outputFile = inputFile[5:20].upper() + index.__str__() + 'conv' + '.mkv'
@@ -63,7 +79,11 @@ def encode(file):
         print(audicoCodec)
         print(videoCodec)
 
-        conv = c.convert(inputFile, outputFile, options)
+        if (videoCodec != 'h264'):
+            conv = c.convert(inputFile, outputFile, options)
+        else:
+            conv = c.convert(inputFile, outputFile, optionsNoConv)
+
 
         for timecode in conv:
             print("Converting (%f) ...\r" % timecode)
