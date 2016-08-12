@@ -12,9 +12,6 @@ def process():
     filelist = sorted(filelist)
     filelist2 = sorted(filelist2)
 
-    print(filelist2)
-    print(filelist)
-
     if(filelist == [] or filelist2 == []):
         print("Nincs megfelelő fájl")
 
@@ -88,6 +85,7 @@ def encode(file):
         else:
             conv = c.convert(inputFile, outputFile, optionsNoConv)
 
+        print(outputFile)
 
         for timecode in conv:
             print("Converting (%f) ...\r" % timecode)
