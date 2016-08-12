@@ -8,6 +8,7 @@ def process():
 
     # get a list of files that have the extension mkv
     filelist = filter(lambda f: f.split('.')[-1] == 'mp4', os.listdir(cwd))
+    filelist += filter(lambda f: f.split('.')[-1] == 'mkv', os.listdir(cwd))
     filelist = sorted(filelist)
 
     # encode each file
@@ -42,7 +43,7 @@ def encode(file):
 
 
     inputFile = file
-    outputFile = inputFile[0:10].upper() + index.__str__() + 'conv' + '.mkv'
+    outputFile = inputFile[5:20].upper() + index.__str__() + 'conv' + '.mkv'
 
     try:
 
@@ -53,7 +54,8 @@ def encode(file):
 
         print(info.format.format)
         print(info.format.duration)
-
+        print(audicoCodec)
+        print(videoCodec)
 
         conv = c.convert(inputFile, outputFile, options)
 
