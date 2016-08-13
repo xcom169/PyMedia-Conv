@@ -1,4 +1,4 @@
-import os, sys , datetime
+import os
 
 
 from converter import Converter
@@ -60,6 +60,7 @@ def encode(file):
     }
 
     inputFile = file
+    #SKiterjesztés leválasztása
     filename, file_extension = os.path.splitext(inputFile)
     outputFile = filename.upper() + '.mkv'
 
@@ -72,6 +73,7 @@ def encode(file):
         fileFormat = info.format.format
         fileStreams = info.streams
 
+        #Van-e DCA-s stream?
         for s in fileStreams:
             if('dca' in s.codec):
                 dca = True
@@ -99,7 +101,7 @@ def encode(file):
     finally:
         # always cleanup even if there are errors
         #subprocess.call(['rm', '-fr', 'attachments'])
-        print('Done')
+        print('Konvertálás kész!')
 
 
 if __name__ == "__main__":
