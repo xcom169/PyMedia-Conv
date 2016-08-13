@@ -80,7 +80,7 @@ def encode(file):
         print(audioCodec)
         print(videoCodec)
 
-        if (videoCodec == 'h264' and dca == True and 'matroska' in fileFormat):
+        if (videoCodec == 'h264' and dca != True and 'matroska' in fileFormat):
             raise ValueError("Nem kell átkódolni")
         elif (videoCodec != 'h264'):
             conv = c.convert(inputFile, outputFile, options)
