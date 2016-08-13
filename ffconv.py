@@ -59,7 +59,8 @@ def encode(file):
     }
 
     inputFile = file
-    outputFile = inputFile[0:20].upper() + 'conv' + '.mkv'
+    inputShort = inputFile.split('.')[0]
+    outputFile = inputShort.upper() + 'conv' + '.mkv'
 
     try:
 
@@ -67,13 +68,14 @@ def encode(file):
 
         videoCodec = info.video.codec
         audioCodec = info.audio.codec
+        fileFormat = info.format.format
 
         print(info.format.format)
         print(info.format.duration)
         print(audioCodec)
         print(videoCodec)
 
-        if (videoCodec == 'h264' and audioCodec == 'ac3'):
+        if (videoCodec == 'h264' and audioCodec == 'ac3' and 'matroska' in fileFormat):
             raise ValueError("Nem kell átkódolni")
         elif (videoCodec != 'h264'):
             conv = c.convert(inputFile, outputFile, options)
