@@ -12,7 +12,7 @@ def process():
     filelist = sorted(filelist)
     filelist2 = sorted(filelist2)
 
-    if(filelist == [] or filelist2 == []):
+    if(filelist == [] and filelist2 == []):
         print("Nincs megfelelő fájl")
     else:
         # encode each file
@@ -35,15 +35,10 @@ def encode(file):
     options = {
     'format': 'mkv',
     'audio': {
-        'codec': 'ac3',
-        'samplerate': 11025,
-        'channels': 2
+        'codec': 'ac3'
     },
     'video': {
-        'codec': 'h264',
-        'width': 720,
-        'height': 400,
-        'fps': 15
+        'codec': 'h264'
     },
     'subtitle': {
         'codec': 'copy'
@@ -73,14 +68,16 @@ def encode(file):
         info = c.probe(file)
 
         videoCodec = info.video.codec
-        audicoCodec = info.audio.codec
+        audioCodec = info.audio.codec
 
         print(info.format.format)
         print(info.format.duration)
-        print(audicoCodec)
+        print(audioCodec)
         print(videoCodec)
 
-        if (videoCodec != 'h264'):
+        if (videoCodec == 'h264' and audioCodec == 'ac3'):
+            print("Nem kell átkódolni")
+        elif (videoCodec != 'h264'):
             conv = c.convert(inputFile, outputFile, options)
         else:
             conv = c.convert(inputFile, outputFile, optionsNoConv)
