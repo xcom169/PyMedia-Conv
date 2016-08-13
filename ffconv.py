@@ -74,7 +74,7 @@ def encode(file):
         print(videoCodec)
 
         if (videoCodec == 'h264' and audioCodec == 'ac3'):
-            print("Nem kell átkódolni")
+            raise ValueError("Nem kell átkódolni")
         elif (videoCodec != 'h264'):
             conv = c.convert(inputFile, outputFile, options)
         else:
@@ -85,7 +85,8 @@ def encode(file):
         for timecode in conv:
             print("Converting (%f) ...\r" % timecode)
 
-
+    except:
+        print('Nem kell átkódolni')
 
     finally:
         # always cleanup even if there are errors
