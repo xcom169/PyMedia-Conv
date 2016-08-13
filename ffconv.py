@@ -1,4 +1,5 @@
-import os, sys
+import os, sys , datetime
+
 
 from converter import Converter
 c = Converter()
@@ -60,7 +61,7 @@ def encode(file):
 
     inputFile = file
     inputShort = inputFile.split('.')[0]
-    outputFile = inputShort.upper() + 'conv' + '.mkv'
+    outputFile = inputShort.upper() + datetime.datetime.now().timestamp() + '.mkv'
 
     try:
 
