@@ -60,8 +60,8 @@ def encode(file):
     }
 
     inputFile = file
-    inputShort = inputFile.split('.')[0]
-    outputFile = inputShort.upper() + datetime.datetime.now().timestamp() + '.mkv'
+    filename, file_extension = os.path.splitext(inputFile)
+    outputFile = filename.upper() + '.mkv'
 
     try:
 
