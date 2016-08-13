@@ -28,8 +28,6 @@ def process():
 
 
 def encode(file):
-    global index
-    index = 1
     print(file)
 
     options = {
@@ -61,7 +59,7 @@ def encode(file):
     }
 
     inputFile = file
-    outputFile = inputFile[0:20].upper() + index.__str__() + 'conv' + '.mkv'
+    outputFile = inputFile[0:20].upper() + 'conv' + '.mkv'
 
     try:
 
@@ -92,8 +90,6 @@ def encode(file):
     finally:
         # always cleanup even if there are errors
         #subprocess.call(['rm', '-fr', 'attachments'])
-        global index
-        index += 1
         print('Done')
 
 
