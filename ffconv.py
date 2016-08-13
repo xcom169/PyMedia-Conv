@@ -71,12 +71,16 @@ def encode(file):
         fileFormat = info.format.format
         fileStreams = info.streams
 
+        for s in fileStreams:
+            if('dca' in s.codec):
+                dca = True
+
         print(info.format.format)
         print(info.format.duration)
         print(audioCodec)
         print(videoCodec)
 
-        if (videoCodec == 'h264' and 'codec=dca' not in fileStreams and 'matroska' in fileFormat):
+        if (videoCodec == 'h264' and dca == True and 'matroska' in fileFormat):
             raise ValueError("Nem kell átkódolni")
         elif (videoCodec != 'h264'):
             conv = c.convert(inputFile, outputFile, options)
