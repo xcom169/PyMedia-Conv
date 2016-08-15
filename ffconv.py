@@ -8,19 +8,14 @@ def process():
     cwd = os.getcwd()
 
     # get a list of files that have the extension mkv
-    filelist = filter(lambda f: f.split('.')[-1] == 'mp4', os.listdir(cwd))
-    filelist2 = filter(lambda f: f.split('.')[-1] == 'mkv', os.listdir(cwd))
+    filelist = filter(lambda f: f.split('.')[-1] in ['mkv','mp4','avi','wmv'], os.listdir(cwd))
     filelist = sorted(filelist)
-    filelist2 = sorted(filelist2)
 
-    if(filelist == [] and filelist2 == []):
+    if(filelist == []):
         print("Nincs megfelelő fájl")
     else:
         # encode each file
         for file in filelist:
-            encode(file)
-
-        for file in filelist2:
             encode(file)
 
         os.chdir('..')
@@ -93,7 +88,7 @@ def encode(file):
         print(outputFile)
 
         for timecode in conv:
-            print("Converting (%f) ...\r" % timecode)
+            print("Konvertálás (%f) ...\r" % timecode)
 
     except:
         print('Nem kell átkódolni')
