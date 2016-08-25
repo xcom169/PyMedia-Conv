@@ -8,9 +8,9 @@ c = Converter()
 
 def process():
     cwd = os.getcwd()
-
+    filetypes = ['mkv','mp4','avi','wmv']
     # get a list of files that have the extension mkv
-    filelist = filter(lambda f: f.split('.')[-1] in ['mkv','mp4','avi','wmv'], os.listdir(cwd))
+    filelist = filter(lambda f: f.split('.')[-1] in filetypes os.listdir(cwd))
     filelist = sorted(filelist)
 
     if(filelist == []):
