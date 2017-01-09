@@ -71,7 +71,7 @@ def encode(file):
         fileStreams = info.streams
         dca = False
 
-        #Van-e DCA-s stream?
+        #Is there any DCA stream? Only DCA streams should be encoded. 
         for s in fileStreams:
             if('dca' in s.codec):
                 dca = True
@@ -91,10 +91,10 @@ def encode(file):
         print(outputFile)
 
         for timecode in conv:
-            print("Konvertálás (%f) ...\r" % timecode)
+            print("Converting (%f) ...\r" % timecode)
 
     except:
-        print('Nem kell átkódolni')
+        print('There is no need to convers')
 
     finally:
         # always cleanup even if there are errors
