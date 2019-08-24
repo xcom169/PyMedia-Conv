@@ -1,6 +1,6 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python3
 
-import os
+import os, sys
 
 
 from converter import Converter
@@ -9,8 +9,9 @@ c = Converter()
 def process():
     cwd = os.getcwd()
     filetypes = ['mkv','mp4','avi','wmv']
+    mFormats = ['dca','eac3']
     # get a list of files that have the extension mkv
-    filelist = filter(lambda f: f.split('.')[-1] in filetypes os.listdir(cwd))
+    filelist = filter(lambda f: f.split('.')[-1] in filetypes, os.listdir(cwd))
     filelist = sorted(filelist)
 
     if(filelist == []):
@@ -70,10 +71,9 @@ def encode(file):
         fileFormat = info.format.format
         fileStreams = info.streams
         dca = False
-
-        #Is there any DCA stream? Only DCA streams should be encoded. 
+#Is there any DCA stream? Only DCA streams should be encoded. 
         for s in fileStreams:
-            if('dca' in s.codec):
+            if(mFormats in s.codec):
                 dca = True
 
         print(info.format.format)
