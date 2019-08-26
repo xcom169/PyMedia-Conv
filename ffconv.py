@@ -62,7 +62,7 @@ def encode(file):
     filename, file_extension = os.path.splitext(inputFile)
     outputFile = filename.upper() + '.mkv'
 
-    try:
+    
 
         info = c.probe(file)
 
@@ -71,16 +71,19 @@ def encode(file):
         fileFormat = info.format.format
         fileStreams = info.streams
         dca = False
+        mFormats = ['eac3','dca']
+        
 #Is there any DCA stream? Only DCA streams should be encoded. 
         for s in fileStreams:
-            if(mFormats in s.codec):
-                dca = True
-
+            for m in mFormats:
+                if(m in s.codec):
+                     dca = True
+                    
         print(info.format.format)
         print(info.format.duration)
         print(audioCodec)
         print(videoCodec)
-
+    try: 
         if (videoCodec == 'h264' and dca == False and 'matroska' in fileFormat):
             raise ValueError("Nem kell átkódolni")
         elif (videoCodec != 'h264'):
