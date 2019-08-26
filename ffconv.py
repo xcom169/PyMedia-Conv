@@ -9,7 +9,6 @@ c = Converter()
 def process():
     cwd = os.getcwd()
     filetypes = ['mkv','mp4','avi','wmv']
-    mFormats = ['dca','eac3']
     # get a list of files that have the extension mkv
     filelist = filter(lambda f: f.split('.')[-1] in filetypes, os.listdir(cwd))
     filelist = sorted(filelist)
@@ -62,28 +61,30 @@ def encode(file):
     filename, file_extension = os.path.splitext(inputFile)
     outputFile = filename.upper() + '.mkv'
 
-    
 
-        info = c.probe(file)
 
-        videoCodec = info.video.codec
-        audioCodec = info.audio.codec
-        fileFormat = info.format.format
-        fileStreams = info.streams
-        dca = False
-        mFormats = ['eac3','dca']
-        
-#Is there any DCA stream? Only DCA streams should be encoded. 
-        for s in fileStreams:
-            for m in mFormats:
-                if(m in s.codec):
-                     dca = True
-                    
+    info = c.probe(file)
+
+    videoCodec = info.video.codec
+    audioCodec = info.audio.codec
+    fileFormat = info.format.format
+    fileStreams = info.streams
+    dca = False
+    mFormats = ['eac3','dca']
+
+#Is there any DCA stream? Only DCA streams should be encoded.
+    for s in fileStreams:
+        for m in mFormats:
+            if(m in s.codec):
+             dca = True
+        else:
+             print("Nem DCA/eac3 stream")
+    try:
         print(info.format.format)
         print(info.format.duration)
         print(audioCodec)
         print(videoCodec)
-    try: 
+
         if (videoCodec == 'h264' and dca == False and 'matroska' in fileFormat):
             raise ValueError("Nem kell átkódolni")
         elif (videoCodec != 'h264'):
@@ -97,12 +98,12 @@ def encode(file):
             print("Converting (%f) ...\r" % timecode)
 
     except:
-        print('There is no need to convers')
+        print('There is no need to convert')
 
     finally:
         # always cleanup even if there are errors
         #subprocess.call(['rm', '-fr', 'attachments'])
-        print('Konvertálás kész!')
+        print('Converting is done!')
 
 
 if __name__ == "__main__":
