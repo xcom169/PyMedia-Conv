@@ -72,10 +72,9 @@ def encode(file):
     dca = False
     mFormats = ['eac3','dca']
 
-#Is there any DCA stream? Only DCA streams should be encoded.
+#Is there any DCA stream? Only DCA streams should be encoded. 
     for s in fileStreams:
-        for m in mFormats:
-            if(m in s.codec):
+        if('dca' in s.codec or 'eac3' in s.codec):
              dca = True
         else:
              print("Nem DCA/eac3 stream")
@@ -103,7 +102,7 @@ def encode(file):
     finally:
         # always cleanup even if there are errors
         #subprocess.call(['rm', '-fr', 'attachments'])
-        print('Converting is done!')
+        print('Konvertálás kész!')
 
 
 if __name__ == "__main__":
