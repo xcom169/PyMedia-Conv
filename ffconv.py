@@ -14,7 +14,7 @@ def process():
     filelist = sorted(filelist)
 
     if(filelist == []):
-        print("Nincs megfelelő fájl")
+        print("No video file to process")
     else:
         # encode each file
         for file in filelist:
