@@ -57,27 +57,28 @@ def encode(file):
     }
 
     inputFile = file
-    #SKiterjesztés leválasztása
+    #Get file extensions: 
     filename, file_extension = os.path.splitext(inputFile)
     outputFile = filename.upper() + '.mkv'
 
 
-
+    #Get media info
     info = c.probe(file)
 
     videoCodec = info.video.codec
     audioCodec = info.audio.codec
     fileFormat = info.format.format
     fileStreams = info.streams
+    #DTS, EAC3 sounds are not welcome
     dca = False
     mFormats = ['eac3','dca']
 
-#Is there any DCA stream? Only DCA streams should be encoded. 
+#Is there any DCA/EAC3 stream? Only DCA/EAC3 streams should be encoded. 
     for s in fileStreams:
         if('dca' in s.codec or 'eac3' in s.codec):
              dca = True
         else:
-             print("Nem DCA/eac3 stream")
+             print("Not DCA/eac3 stream")
     try:
         print(info.format.format)
         print(info.format.duration)
@@ -85,7 +86,7 @@ def encode(file):
         print(videoCodec)
 
         if (videoCodec == 'h264' and dca == False and 'matroska' in fileFormat):
-            raise ValueError("Nem kell átkódolni")
+            raise ValueError("No need to encode")
         elif (videoCodec != 'h264'):
             conv = c.convert(inputFile, outputFile, options)
         else:
@@ -102,7 +103,7 @@ def encode(file):
     finally:
         # always cleanup even if there are errors
         #subprocess.call(['rm', '-fr', 'attachments'])
-        print('Konvertálás kész!')
+        print('Converting is done')
 
 
 if __name__ == "__main__":
