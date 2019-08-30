@@ -9,7 +9,7 @@ c = Converter()
 def process():
     cwd = os.getcwd()
     filetypes = ['mkv','mp4','avi','wmv']
-    # get a list of files that have the extension mkv
+    # get a list of video files in the current directory: 
     filelist = filter(lambda f: f.split('.')[-1] in filetypes, os.listdir(cwd))
     filelist = sorted(filelist)
 
