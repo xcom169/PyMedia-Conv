@@ -75,10 +75,12 @@ def encode(file):
 
 #Is there any DCA/EAC3 stream? Only DCA/EAC3 streams should be encoded. 
     for s in fileStreams:
-        if('dca' in s.codec or 'eac3' in s.codec):
-             dca = True
-        else:
-             print("Not DCA/eac3 stream")
+        for m in mFormats:
+            if(m in s.codec):
+                dca = True
+            else:
+                print("Not DCA/eac3 stream")
+                    
     try:
         print(info.format.format)
         print(info.format.duration)
