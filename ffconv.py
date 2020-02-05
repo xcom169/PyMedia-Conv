@@ -38,7 +38,7 @@ def encode(file):
     },
     'subtitle': {
         'codec': 'copy'
-    },
+    }, 
     'map': 0
 }
 
