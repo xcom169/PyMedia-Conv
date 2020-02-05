@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-print('Hello World!')
+print('This is a video conversion program')
 
 import ffmpeg, os, sys
 
@@ -16,7 +16,7 @@ def process():
     filelist = sorted(filelist)
 
     if(filelist == []):
-        print("No video file to process")
+        print("No video file to process in this dir")
     else:
         # encode each file
         for file in filelist:
@@ -29,6 +29,7 @@ def encode(file):
     inputFile = file
     #Get file extensions:
     print(file)
+    # New file will be UPPER
     filename, file_extension = os.path.splitext(inputFile)
     outputFile = filename.upper() + '.mkv'
 
